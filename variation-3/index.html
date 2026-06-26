@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page It Forward — Re-engagement (Variation 3: Quiet Note)</title>
+  <meta name="description" content="A warm, non-pushy re-engagement popup for members who stepped away from checkout." />
+
+  <!-- Social share placeholder (drop a real image into assets/images/) -->
+  <meta property="og:title" content="Page It Forward — your spot is still saved" />
+  <meta property="og:image" content="assets/images/og-cover.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body class="pif-app">
+  <main class="pif-overlay">
+    <article class="pif-modal" role="dialog" aria-modal="true" aria-labelledby="pif-title">
+
+      <button class="pif-close" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+
+      <!-- Corner flamingo, decorative -->
+      <img class="pif-flamingo" src="assets/icons/flamingo.svg" alt="" aria-hidden="true" width="54" height="74" />
+
+      <header>
+        <span class="pif-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+          Saved for you
+        </span>
+        <h1 class="pif-headline" id="pif-title">Not ready yet? No rush at all.</h1>
+        <p class="pif-sub">Whenever you come back, here&rsquo;s what the shelf has waiting:</p>
+      </header>
+
+      <ul class="pif-values">
+        <li>
+          <span class="pif-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8866d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2" /><path d="M17 9l4 2v4l-4 2" /></svg></span>
+          <span>Mail books out, get books back.</span>
+        </li>
+        <li>
+          <span class="pif-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4f9a94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z" /><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z" /></svg></span>
+          <span>A shelf other readers can browse.</span>
+        </li>
+        <li>
+          <span class="pif-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c98a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M12 8v8M9 12h6" /></svg></span>
+          <span>A credit for every book you share.</span>
+        </li>
+      </ul>
+
+      <section class="pif-question" aria-label="What gave you pause?">
+        <h2 class="pif-question-title">What gave you pause?</h2>
+        <div class="pif-pills">
+          <button class="pif-pill" type="button" data-target="look" aria-expanded="false">Look around first</button>
+          <button class="pif-pill" type="button" data-target="price" aria-expanded="false">Price felt steep</button>
+          <button class="pif-pill" type="button" data-target="use" aria-expanded="false">Not sure I&rsquo;ll use it</button>
+          <button class="pif-pill" type="button" data-target="else" aria-expanded="false">Something else</button>
+        </div>
+
+        <div class="pif-response" data-response="look"><div class="pif-response-inner">
+          <div class="pif-card">
+            <span class="pif-lead">Browse first &mdash; honestly, please do.</span> The public library is open to anyone. Have a look around, no commitment.
+            <div>
+              <button class="pif-ghost-btn" type="button">Browse the library
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </button>
+            </div>
+          </div>
+        </div></div>
+        <div class="pif-response" data-response="price"><div class="pif-response-inner">
+          <div class="pif-card">
+            <span class="pif-lead">About one paperback a month.</span> Books go both ways all year, and the first 14 days are free.
+          </div>
+        </div></div>
+        <div class="pif-response" data-response="use"><div class="pif-response-inner">
+          <div class="pif-card">
+            <span class="pif-lead">No minimums.</span> Ship a book whenever one finds its reader &mdash; your pace, always.
+          </div>
+        </div></div>
+        <div class="pif-response" data-response="else"><div class="pif-response-inner">
+          <div class="pif-card pif-feedback">
+            <span class="pif-lead">What&rsquo;s on your mind?</span> A line or two helps a lot.
+            <div class="pif-feedback-form">
+              <textarea aria-label="Tell us what gave you pause" placeholder="Tell us&hellip;"></textarea>
+              <div><button class="pif-send-btn pif-feedback-send" type="button">Send note</button></div>
+            </div>
+            <p class="pif-feedback-thanks" hidden>Thank you &mdash; noted with care.</p>
+          </div>
+        </div></div>
+      </section>
+
+      <footer class="pif-actions">
+        <button class="pif-cta-primary" type="button">
+          Try checkout again
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </button>
+        <button class="pif-cta-secondary" type="button">Maybe later</button>
+      </footer>
+
+    </article>
+  </main>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

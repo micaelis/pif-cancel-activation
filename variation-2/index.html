@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page It Forward — Re-engagement (Variation 2: Editorial Split)</title>
+  <meta name="description" content="A warm, non-pushy re-engagement popup for members who stepped away from checkout." />
+
+  <!-- Social share placeholder (drop a real image into assets/images/) -->
+  <meta property="og:title" content="Page It Forward — your spot is still saved" />
+  <meta property="og:image" content="assets/images/og-cover.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body class="pif-app">
+  <main class="pif-overlay">
+    <article class="pif-modal" role="dialog" aria-modal="true" aria-labelledby="pif-title">
+
+      <button class="pif-close" type="button" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+
+      <div class="pif-split">
+
+        <!-- LEFT: warmth + value -->
+        <header class="pif-left">
+          <span class="pif-eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5" /></svg>
+            Nothing lost
+          </span>
+          <h1 class="pif-headline" id="pif-title">Not quite ready yet? That&rsquo;s alright.</h1>
+          <p class="pif-sub">Page It Forward is a reader-to-reader exchange &mdash; real books, real people, at your own pace. Here&rsquo;s what membership opens up:</p>
+          <ul class="pif-values">
+            <li>
+              <span class="pif-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#e8866d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="14" height="12" rx="2" /><path d="M17 9l4 2v4l-4 2" /></svg></span>
+              <span>Mail books to other readers, and get books mailed to you.</span>
+            </li>
+            <li>
+              <span class="pif-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#4f9a94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z" /><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z" /></svg></span>
+              <span>Build a shelf other readers can browse.</span>
+            </li>
+            <li>
+              <span class="pif-value-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#c98a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M12 8v8M9 12h6" /></svg></span>
+              <span>Earn a credit for every book you share.</span>
+            </li>
+          </ul>
+          <img class="pif-illustration" src="assets/icons/shelf-flamingo.svg" alt="A shelf of books with a flamingo beside it" width="280" height="120" />
+        </header>
+
+        <!-- RIGHT: question + actions -->
+        <section class="pif-right" aria-label="What gave you pause?">
+          <h2 class="pif-question-title">What gave you pause?</h2>
+          <div class="pif-options">
+            <button class="pif-option" type="button" data-target="look" aria-expanded="false">
+              <span class="pif-option-row"><span>Look around first</span>
+                <span class="pif-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg></span></span>
+              <small>Browse before deciding</small>
+            </button>
+            <button class="pif-option" type="button" data-target="price" aria-expanded="false">
+              <span class="pif-option-row"><span>The price felt steep</span>
+                <span class="pif-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg></span></span>
+              <small>What you get for it</small>
+            </button>
+            <button class="pif-option" type="button" data-target="use" aria-expanded="false">
+              <span class="pif-option-row"><span>Not sure I&rsquo;ll use it</span>
+                <span class="pif-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg></span></span>
+              <small>No minimums, ever</small>
+            </button>
+            <button class="pif-option" type="button" data-target="else" aria-expanded="false">
+              <span class="pif-option-row"><span>Something else</span>
+                <span class="pif-chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg></span></span>
+              <small>Tell us in your words</small>
+            </button>
+          </div>
+
+          <!-- Single response region below the grid -->
+          <div class="pif-response" data-response="look"><div class="pif-response-inner">
+            <div class="pif-card">
+              <span class="pif-lead">Wander first &mdash; the door stays open.</span> The public library is free to browse. Take a look at who&rsquo;s sharing what, then come back whenever it feels right.
+              <div>
+                <button class="pif-ghost-btn" type="button">Browse the library
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </button>
+              </div>
+            </div>
+          </div></div>
+          <div class="pif-response" data-response="price"><div class="pif-response-inner">
+            <div class="pif-card">
+              <span class="pif-lead">Less than one paperback a month.</span> That covers books moving in both directions all year &mdash; and your first 14 days are free, so you can feel it out before a cent changes hands.
+            </div>
+          </div></div>
+          <div class="pif-response" data-response="use"><div class="pif-response-inner">
+            <div class="pif-card">
+              <span class="pif-lead">There&rsquo;s no quota to hit.</span> Members ship at their own pace &mdash; a book here, a book there, whenever one finds its next reader. Light use is completely fine.
+            </div>
+          </div></div>
+          <div class="pif-response" data-response="else"><div class="pif-response-inner">
+            <div class="pif-card pif-feedback">
+              <span class="pif-lead">Tell us what&rsquo;s on your mind.</span> A line or two helps us make Page It Forward better for the next reader, too.
+              <div class="pif-feedback-form">
+                <textarea aria-label="Tell us what gave you pause" placeholder="What gave you pause?"></textarea>
+                <div><button class="pif-send-btn pif-feedback-send" type="button">Send note</button></div>
+              </div>
+              <p class="pif-feedback-thanks" hidden>Thank you &mdash; that&rsquo;s genuinely helpful.</p>
+            </div>
+          </div></div>
+
+          <!-- Actions -->
+          <footer class="pif-actions">
+            <div class="pif-actions-row">
+              <button class="pif-cta-primary" type="button">
+                Try checkout again
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </button>
+              <button class="pif-cta-secondary" type="button">Maybe later</button>
+            </div>
+          </footer>
+        </section>
+
+      </div>
+    </article>
+  </main>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

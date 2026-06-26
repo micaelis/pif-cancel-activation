@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 88" fill="none" role="img" aria-label="A single flamingo">
+  <path d="M30 84 q-4 -42 8 -54 q9 -9 19 -5 q8 3 6 11 q-2 7 -10 6 q-7 -1 -7 -7" stroke="#f2b9ac" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <circle cx="58" cy="29" r="3" fill="#1a2942"/>
+  <path d="M60 31 l6 -2" stroke="#e8866d" stroke-width="4" stroke-linecap="round"/>
+  <path d="M30 84 l-3 4 M36 84 l3 4" stroke="#f2b9ac" stroke-width="4" stroke-linecap="round"/>
+</svg>

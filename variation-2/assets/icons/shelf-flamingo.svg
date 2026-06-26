@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 120" fill="none" role="img" aria-label="A shelf of books with a flamingo beside it">
+  <rect x="40" y="34" width="12" height="62" rx="2" fill="#1a2942"/>
+  <rect x="54" y="26" width="12" height="70" rx="2" fill="#e8866d"/>
+  <rect x="68" y="40" width="12" height="56" rx="2" fill="#4f9a94"/>
+  <rect x="82" y="30" width="12" height="66" rx="2" fill="#f2b9ac"/>
+  <rect x="96" y="38" width="12" height="58" rx="2" fill="#233651"/>
+  <rect x="110" y="24" width="12" height="72" rx="2" fill="#c9a24a"/>
+  <rect x="124" y="42" width="12" height="54" rx="2" fill="#e8866d"/>
+  <rect x="30" y="96" width="170" height="7" rx="3" fill="#c79a63"/>
+  <!-- flamingo -->
+  <path d="M225 96 q-3 -34 6 -44 q7 -8 16 -5 q7 2 6 9 q-1 6 -8 6 q-6 0 -7 -5" stroke="#f2b9ac" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <circle cx="248" cy="58" r="2.4" fill="#1a2942"/>
+  <path d="M250 60 l7 -1" stroke="#e8866d" stroke-width="3" stroke-linecap="round"/>
+  <path d="M225 96 l-2 7 M231 96 l2 7" stroke="#f2b9ac" stroke-width="3" stroke-linecap="round"/>
+</svg>
