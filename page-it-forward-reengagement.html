@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page It Forward — Re-engagement popup mockups</title>
+
+<!-- Brand-feel fonts (with graceful fallbacks if offline) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     PAGE IT FORWARD — Re-engagement popup
+     Three design directions, single self-contained file.
+     ============================================================ */
+
+  :root {
+    /* Brand palette */
+    --navy:        #1a2942;
+    --navy-deep:   #141f33;
+    --navy-soft:   #233651;
+    --cream:       #faf3e8;
+    --cream-2:     #f4ead8;
+    --cream-3:     #efe2cd;
+    --coral:       #e8866d;
+    --coral-soft:  #f0a99a;
+    --pink:        #f2b9ac;
+    --teal:        #4f9a94;
+    --teal-soft:   #cfe4e1;
+    --ink:         #233651;
+    --ink-muted:   #6c7a8c;
+    --line:        #e7d8c2;
+
+    --serif: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+    --sans:  "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 14px;
+    --shadow: 0 30px 70px -25px rgba(0,0,0,0.55), 0 8px 24px -12px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #20324f 0%, transparent 60%),
+      var(--navy);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: 0 0 80px;
+  }
+
+  /* ---------- Page chrome (just for reviewing the mockups) ---------- */
+  .page-head {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 48px 24px 8px;
+    color: #e9eef5;
+  }
+  .page-head .kicker {
+    font-family: var(--sans);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--teal-soft);
+    margin: 0 0 10px;
+  }
+  .page-head h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 30px;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+  .page-head p {
+    margin: 0;
+    color: #aebdd0;
+    max-width: 60ch;
+    line-height: 1.55;
+  }
+
+  .variation {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .variation-label {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    max-width: 920px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .variation-label .tag {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy-deep);
+    background: var(--coral-soft);
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+  .variation-label h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 22px;
+    color: #fff;
+    margin: 0;
+  }
+  .variation-label .note {
+    color: #9fb0c6;
+    font-size: 14px;
+  }
+
+  /* ---------- The dimmed "app behind the modal" stage ---------- */
+  .stage {
+    position: relative;
+    margin: 16px auto 0;
+    border-radius: 22px;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(10,16,28,0.55), rgba(10,16,28,0.72)),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'/>"),
+      var(--navy-deep);
+    padding: 56px 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 360px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  /* a faint shelf hint along the bottom of the dimmed app */
+  .stage::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 70px;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(255,255,255,0.04) 0 8px,
+        rgba(255,255,255,0.015) 8px 18px);
+    opacity: 0.5;
+  }
+
+  /* ============================================================
+     SHARED MODAL PRIMITIVES
+     ============================================================ */
+  .modal {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background: var(--cream);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 34px 34px 28px;
+    animation: pop 0.5s cubic-bezier(.2,.8,.25,1) both;
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(14px) scale(0.985); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .modal h3.headline {
+    font-family: var(--serif);
+    font-weight: 600;
+    line-height: 1.12;
+    color: var(--navy-soft);
+    margin: 0;
+  }
+  .modal .sub {
+    color: var(--ink-muted);
+    line-height: 1.55;
+    margin: 10px 0 0;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal-soft);
+    color: #25655f;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 999px;
+  }
+  .eyebrow svg { width: 15px; height: 15px; }
+
+  /* Value reminders */
+  .values { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 12px; }
+  .values li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    color: var(--navy-soft);
+    line-height: 1.45;
+    font-size: 15px;
+  }
+  .values .vico {
+    flex: 0 0 auto;
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    display: grid; place-items: center;
+    background: var(--cream-2);
+  }
+  .values .vico svg { width: 19px; height: 19px; }
+  .values b { font-weight: 700; }
+
+  /* Question heading */
+  .q-title {
+    font-family: var(--serif);
+    font-weight: 600;
+    color: var(--navy-soft);
+    font-size: 18px;
+    margin: 0 0 14px;
+  }
+
+  /* Tappable options */
+  .options { display: grid; gap: 10px; }
+  .option {
+    appearance: none;
+    -webkit-appearance: none;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy-soft);
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color .18s ease, box-shadow .18s ease, transform .12s ease, background .18s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .option:hover { border-color: var(--coral-soft); box-shadow: 0 8px 18px -12px rgba(232,134,109,0.6); transform: translateY(-1px); }
+  .option:focus-visible { outline: 3px solid rgba(79,154,148,0.4); outline-offset: 2px; }
+  .option .chev {
+    flex: 0 0 auto;
+    width: 22px; height: 22px;
+    border-radius: 999px;
+    background: var(--cream-2);
+    display: grid; place-items: center;
+    color: var(--coral);
+    transition: transform .25s ease, background .2s ease, color .2s ease;
+  }
+  .option .chev svg { width: 12px; height: 12px; }
+  .option.is-active {
+    border-color: var(--coral);
+    background: #fff;
+    box-shadow: 0 10px 22px -14px rgba(232,134,109,0.85);
+  }
+  .option.is-active .chev { background: var(--coral); color: #fff; transform: rotate(90deg); }
+
+  /* Smoothly-expanding response (CSS grid-rows trick — animates height) */
+  .response {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows .38s cubic-bezier(.2,.8,.25,1), opacity .3s ease, margin .38s ease;
+  }
+  .response > .response-inner { overflow: hidden; }
+  .response.is-open { grid-template-rows: 1fr; opacity: 1; }
+
+  .response .card {
+    background: var(--cream-2);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin: 10px 2px 2px;
+    color: var(--navy-soft);
+    line-height: 1.55;
+    font-size: 15px;
+  }
+  .response .card .lead { font-weight: 700; }
+  .response .ghost-btn {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    border: 1.5px solid var(--navy-soft);
+    color: var(--navy-soft);
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .18s ease, color .18s ease;
+  }
+  .response .ghost-btn:hover { background: var(--navy-soft); color: #fff; }
+  .response .ghost-btn svg { width: 14px; height: 14px; }
+
+  /* free-form feedback */
+  .feedback textarea {
+    width: 100%;
+    margin-top: 10px;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    background: #fff;
+    padding: 12px 14px;
+    font-family: var(--sans);
+    font-size: 14px;
+    color: var(--navy-soft);
+    resize: vertical;
+    min-height: 72px;
+  }
+  .feedback textarea:focus-visible { outline: 3px solid rgba(79,154,148,0.35); outline-offset: 1px; border-color: var(--teal); }
+  .feedback-row { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+  .send-btn {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .18s ease, transform .12s ease;
+  }
+  .send-btn:hover { background: #418680; transform: translateY(-1px); }
+  .thanks { display: none; color: var(--teal); font-weight: 700; }
+  .thanks.show { display: block; }
+
+  /* Bottom actions */
+  .actions { margin-top: 22px; }
+  .cta-primary {
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-weight: 800;
+    font-size: 16px;
+    color: #fff;
+    background: var(--navy-soft);
+    padding: 16px 20px;
+    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background .18s ease, transform .12s ease, box-shadow .18s ease;
+    box-shadow: 0 14px 28px -16px rgba(26,41,66,0.9);
+  }
+  .cta-primary:hover { background: #16263f; transform: translateY(-1px); }
+  .cta-primary svg { width: 16px; height: 16px; }
+  .cta-secondary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--ink-muted);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(108,122,140,0.4);
+    transition: color .18s ease;
+  }
+  .cta-secondary:hover { color: var(--navy-soft); }
+
+  /* Close X */
+  .close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 34px; height: 34px;
+    border-radius: 999px;
+    border: none;
+    background: var(--cream-2);
+    color: var(--ink-muted);
+    cursor: pointer;
+    display: grid; place-items: center;
+    transition: background .18s ease, color .18s ease;
+  }
+  .close:hover { background: var(--cream-3); color: var(--navy-soft); }
+  .close svg { width: 14px; height: 14px; }
+
+  /* Illustration badges */
+  .ill-badge {
+    width: 72px; height: 72px;
+    border-radius: 20px;
+    background: var(--cream-2);
+    display: grid; place-items: center;
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .ill-badge svg { width: 46px; height: 46px; }
+
+  /* ============================================================
+     VARIATION A — "Cozy Card" (centered, stacked pills)
+     ============================================================ */
+  .v-a .modal { max-width: 470px; text-align: center; }
+  .v-a .modal .top { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .v-a .modal h3.headline { font-size: 27px; margin-top: 4px; }
+  .v-a .modal .sub { max-width: 38ch; margin-left: auto; margin-right: auto; }
+  .v-a .values { margin-top: 20px; text-align: left; }
+  .v-a .qwrap { margin-top: 24px; text-align: left; }
+  .v-a .divider { height: 1px; background: var(--line); margin: 24px 0 0; }
+
+  /* ============================================================
+     VARIATION B — "Editorial Split" (two-column, grid options)
+     ============================================================ */
+  .v-b .modal { max-width: 760px; padding: 0; overflow: hidden; }
+  .v-b .b-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; }
+  .v-b .b-left {
+    background: linear-gradient(180deg, var(--cream-2), var(--cream-3));
+    padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .v-b .b-left h3.headline { font-size: 30px; }
+  .v-b .b-left .sub { margin-top: 4px; }
+  .v-b .values { margin-top: 8px; }
+  .v-b .values .vico { background: #fff; }
+  .v-b .b-illo { margin-top: auto; display: flex; align-items: flex-end; justify-content: flex-start; }
+  .v-b .b-illo svg { width: 100%; max-width: 280px; height: auto; }
+  .v-b .b-right { padding: 36px 34px; display: flex; flex-direction: column; }
+  .v-b .options { grid-template-columns: 1fr 1fr; }
+  .v-b .option { flex-direction: column; align-items: flex-start; gap: 10px; min-height: 78px; }
+  .v-b .option .opt-row { display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 8px; }
+  .v-b .option small { font-weight: 600; color: var(--ink-muted); font-size: 12.5px; line-height: 1.35; }
+  .v-b .actions { margin-top: auto; padding-top: 22px; }
+  .v-b .actions-row { display: flex; gap: 12px; align-items: center; }
+  .v-b .actions-row .cta-primary { flex: 1; }
+  .v-b .actions-row .cta-secondary { width: auto; margin-top: 0; white-space: nowrap; }
+
+  /* ============================================================
+     VARIATION C — "Quiet Note" (minimal, wrap pills, flamingo)
+     ============================================================ */
+  .v-c .modal { max-width: 440px; background: var(--cream); }
+  .v-c .modal { padding-top: 30px; }
+  .v-c .flam {
+    position: absolute;
+    top: 6px; right: 64px;
+    width: 54px; height: 74px;
+    pointer-events: none;
+    opacity: 0.92;
+  }
+  .v-c .modal h3.headline { font-size: 25px; max-width: 18ch; }
+  .v-c .values { margin-top: 18px; gap: 10px; }
+  .v-c .values li { font-size: 14.5px; }
+  .v-c .qwrap { margin-top: 22px; }
+  .v-c .pills { display: flex; flex-wrap: wrap; gap: 9px; }
+  .v-c .pill {
+    appearance: none; -webkit-appearance: none;
+    font-family: var(--sans);
+    font-weight: 700; font-size: 14px;
+    color: var(--navy-soft);
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, color .18s ease, transform .12s ease;
+  }
+  .v-c .pill:hover { border-color: var(--coral-soft); transform: translateY(-1px); }
+  .v-c .pill.is-active { background: var(--navy-soft); border-color: var(--navy-soft); color: #fff; }
+  .v-c .pill:focus-visible { outline: 3px solid rgba(79,154,148,0.4); outline-offset: 2px; }
+  .v-c .response .card { background: #fff; }
+
+  @media (max-width: 720px) {
+    .v-b .b-grid { grid-template-columns: 1fr; }
+    .v-b .b-illo { display: none; }
+    .v-b .options { grid-template-columns: 1fr; }
+    .v-b .actions-row { flex-direction: column-reverse; align-items: stretch; }
+    .v-b .actions-row .cta-secondary { width: 100%; }
+  }
+  @media (max-width: 520px) {
+    .modal { padding: 26px 22px 22px; }
+    .stage { padding: 28px 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="page-head">
+    <p class="kicker">Page It Forward · re-engagement</p>
+    <h1>“Came back from checkout” popup — three directions</h1>
+    <p>Each popup is live: tap an option under “What gave you pause?” and the response unfolds below it. Variation B opens with “The price felt steep” already expanded so you can see a selected state without clicking. Compare the directions, then tell me which one to refine.</p>
+  </header>
+
+  <!-- ============================================================
+       VARIATION A — COZY CARD
+       ============================================================ -->
+  <div class="variation-label">
+    <span class="tag">Variation A</span>
+    <h2>Cozy Card</h2>
+    <span class="note">Centered · warm · book-club intimate</span>
+  </div>
+  <section class="variation v-a" style="padding: 0 24px;">
+    <div class="stage">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="a-title">
+        <button class="close" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+
+        <div class="top">
+          <div class="ill-badge" aria-hidden="true">
+            <!-- book stack -->
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="12" y="40" width="40" height="9" rx="3" fill="#1a2942"/>
+              <rect x="15" y="31" width="36" height="9" rx="3" fill="#e8866d"/>
+              <rect x="11" y="22" width="38" height="9" rx="3" fill="#4f9a94"/>
+              <rect x="17" y="13" width="32" height="9" rx="3" fill="#f2b9ac"/>
+              <circle cx="46" cy="17.5" r="2" fill="#1a2942"/>
+            </svg>
+          </div>
+          <span class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Your spot is still saved
+          </span>
+          <h3 class="headline" id="a-title">Took a step back?<br>Totally fair.</h3>
+          <p class="sub">No rush, and nothing’s lost. Here’s what’s waiting whenever you’re ready to join the shelf.</p>
+        </div>
+
+        <ul class="values">
+          <li>
+            <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#e8866d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v6l9 4 9-4V7"/></svg></span>
+            <span><b>Mail books to readers who’ll love them</b> — and get books mailed to you.</span>
+          </li>
+          <li>
+            <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#4f9a94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg></span>
+            <span><b>Build a personal shelf</b> other readers can browse and request from.</span>
+          </li>
+          <li>
+            <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#c98a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9 12h6"/></svg></span>
+            <span><b>Earn a credit for every book you share</b> — one out, one in.</span>
+          </li>
+        </ul>
+
+        <div class="qwrap">
+          <p class="q-title">What gave you pause?</p>
+          <div class="options" data-options>
+            <button class="option" data-target="look">
+              <span>I want to look around first</span>
+              <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+            </button>
+            <div class="response" data-response="look"><div class="response-inner">
+              <div class="card">
+                <span class="lead">Browse before you commit — that’s encouraged.</span> The public library is open to wander anytime. See the shelves, then decide.
+                <div><button class="ghost-btn">Browse the library
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button></div>
+              </div>
+            </div></div>
+
+            <button class="option" data-target="price">
+              <span>The price felt steep</span>
+              <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+            </button>
+            <div class="response" data-response="price"><div class="response-inner">
+              <div class="card">
+                <span class="lead">It’s about the cost of one paperback a month.</span> For that, books move both ways all year — and your first 14 days are on us, no charge if it’s not your thing.
+              </div>
+            </div></div>
+
+            <button class="option" data-target="use">
+              <span>I’m not sure I’ll use it enough</span>
+              <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+            </button>
+            <div class="response" data-response="use"><div class="response-inner">
+              <div class="card">
+                <span class="lead">No minimums, no pace to keep up with.</span> Members ship a book when one finds its reader — whether that’s this week or three months from now. It’s yours to use lightly.
+              </div>
+            </div></div>
+
+            <button class="option" data-target="else">
+              <span>Something else</span>
+              <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+            </button>
+            <div class="response" data-response="else"><div class="response-inner">
+              <div class="card feedback">
+                <span class="lead">We’d genuinely like to know.</span> Tell us what gave you pause — it helps us make this better.
+                <div class="feedback-form">
+                  <textarea placeholder="Whatever’s on your mind…"></textarea>
+                  <div class="feedback-row">
+                    <button class="send-btn" type="button">Send note</button>
+                  </div>
+                </div>
+                <p class="thanks">Thank you — we read every note that comes in.</p>
+              </div>
+            </div></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="actions">
+          <button class="cta-primary">
+            Try checkout again
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <button class="cta-secondary">Maybe later — I’ll keep browsing</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VARIATION B — EDITORIAL SPLIT  (opens pre-expanded)
+       ============================================================ -->
+  <div class="variation-label">
+    <span class="tag">Variation B</span>
+    <h2>Editorial Split</h2>
+    <span class="note">Two-column · roomy · shown with a response open</span>
+  </div>
+  <section class="variation v-b" style="padding: 0 24px;">
+    <div class="stage">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="b-title">
+        <button class="close" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="b-grid">
+          <!-- LEFT: warmth + value -->
+          <div class="b-left">
+            <span class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Nothing lost
+            </span>
+            <h3 class="headline" id="b-title">Not quite ready yet? That’s alright.</h3>
+            <p class="sub">Page It Forward is a reader-to-reader exchange — real books, real people, at your own pace. Here’s what membership opens up:</p>
+            <ul class="values">
+              <li>
+                <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#e8866d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 9l4 2v4l-4 2"/></svg></span>
+                <span>Mail books to other readers, and get books mailed to you.</span>
+              </li>
+              <li>
+                <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#4f9a94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg></span>
+                <span>Build a shelf other readers can browse.</span>
+              </li>
+              <li>
+                <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#c98a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9 12h6"/></svg></span>
+                <span>Earn a credit for every book you share.</span>
+              </li>
+            </ul>
+            <div class="b-illo" aria-hidden="true">
+              <!-- little shelf + flamingo -->
+              <svg viewBox="0 0 280 120" fill="none">
+                <rect x="40" y="34" width="12" height="62" rx="2" fill="#1a2942"/>
+                <rect x="54" y="26" width="12" height="70" rx="2" fill="#e8866d"/>
+                <rect x="68" y="40" width="12" height="56" rx="2" fill="#4f9a94"/>
+                <rect x="82" y="30" width="12" height="66" rx="2" fill="#f2b9ac"/>
+                <rect x="96" y="38" width="12" height="58" rx="2" fill="#233651"/>
+                <rect x="110" y="24" width="12" height="72" rx="2" fill="#c9a24a"/>
+                <rect x="124" y="42" width="12" height="54" rx="2" fill="#e8866d"/>
+                <rect x="30" y="96" width="170" height="7" rx="3" fill="#c79a63"/>
+                <!-- flamingo -->
+                <g>
+                  <path d="M225 96 q-3 -34 6 -44 q7 -8 16 -5 q7 2 6 9 q-1 6 -8 6 q-6 0 -7 -5" stroke="#f2b9ac" stroke-width="4" fill="none" stroke-linecap="round"/>
+                  <circle cx="248" cy="58" r="2.4" fill="#1a2942"/>
+                  <path d="M250 60 l7 -1" stroke="#e8866d" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M225 96 l-2 7 M231 96 l2 7" stroke="#f2b9ac" stroke-width="3" stroke-linecap="round"/>
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          <!-- RIGHT: question + actions -->
+          <div class="b-right">
+            <p class="q-title">What gave you pause?</p>
+            <div class="options" data-options>
+              <button class="option" data-target="b-look">
+                <span class="opt-row"><span>Look around first</span>
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></span>
+                <small>Browse before deciding</small>
+              </button>
+              <button class="option is-active" data-target="b-price">
+                <span class="opt-row"><span>The price felt steep</span>
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></span>
+                <small>What you get for it</small>
+              </button>
+              <button class="option" data-target="b-use">
+                <span class="opt-row"><span>Not sure I’ll use it</span>
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></span>
+                <small>No minimums, ever</small>
+              </button>
+              <button class="option" data-target="b-else">
+                <span class="opt-row"><span>Something else</span>
+                  <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></span>
+                <small>Tell us in your words</small>
+              </button>
+            </div>
+
+            <!-- single response region below the grid -->
+            <div class="response" data-response="b-look"><div class="response-inner">
+              <div class="card">
+                <span class="lead">Wander first — the door stays open.</span> The public library is free to browse. Take a look at who’s sharing what, then come back whenever it feels right.
+                <div><button class="ghost-btn">Browse the library
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+              </div>
+            </div></div>
+            <div class="response is-open" data-response="b-price"><div class="response-inner">
+              <div class="card">
+                <span class="lead">Less than one paperback a month.</span> That covers books moving in both directions all year — and your first 14 days are free, so you can feel it out before a cent changes hands.
+              </div>
+            </div></div>
+            <div class="response" data-response="b-use"><div class="response-inner">
+              <div class="card">
+                <span class="lead">There’s no quota to hit.</span> Members ship at their own pace — a book here, a book there, whenever one finds its next reader. Light use is completely fine.
+              </div>
+            </div></div>
+            <div class="response" data-response="b-else"><div class="response-inner">
+              <div class="card feedback">
+                <span class="lead">Tell us what’s on your mind.</span> A line or two helps us make Page It Forward better for the next reader, too.
+                <div class="feedback-form">
+                  <textarea placeholder="What gave you pause?"></textarea>
+                  <div class="feedback-row"><button class="send-btn" type="button">Send note</button></div>
+                </div>
+                <p class="thanks">Thank you — that’s genuinely helpful.</p>
+              </div>
+            </div></div>
+
+            <div class="actions">
+              <div class="actions-row">
+                <button class="cta-primary">
+                  Try checkout again
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <button class="cta-secondary">Maybe later</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VARIATION C — QUIET NOTE
+       ============================================================ -->
+  <div class="variation-label">
+    <span class="tag">Variation C</span>
+    <h2>Quiet Note</h2>
+    <span class="note">Minimal · pill chips · understated</span>
+  </div>
+  <section class="variation v-c" style="padding: 0 24px;">
+    <div class="stage">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="c-title">
+        <button class="close" aria-label="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+
+        <!-- corner flamingo -->
+        <svg class="flam" viewBox="0 0 64 88" fill="none" aria-hidden="true">
+          <path d="M30 84 q-4 -42 8 -54 q9 -9 19 -5 q8 3 6 11 q-2 7 -10 6 q-7 -1 -7 -7" stroke="#f2b9ac" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="58" cy="29" r="3" fill="#1a2942"/>
+          <path d="M60 31 l6 -2" stroke="#e8866d" stroke-width="4" stroke-linecap="round"/>
+          <path d="M30 84 l-3 4 M36 84 l3 4" stroke="#f2b9ac" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Saved for you
+        </span>
+        <h3 class="headline" id="c-title">Not ready yet? No rush at all.</h3>
+        <p class="sub" style="max-width:34ch;">Whenever you come back, here’s what the shelf has waiting:</p>
+
+        <ul class="values">
+          <li>
+            <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#e8866d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 9l4 2v4l-4 2"/></svg></span>
+            <span>Mail books out, get books back.</span>
+          </li>
+          <li>
+            <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#4f9a94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg></span>
+            <span>A shelf other readers can browse.</span>
+          </li>
+          <li>
+            <span class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="#c98a3a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9 12h6"/></svg></span>
+            <span>A credit for every book you share.</span>
+          </li>
+        </ul>
+
+        <div class="qwrap">
+          <p class="q-title">What gave you pause?</p>
+          <div class="pills" data-options>
+            <button class="pill" data-target="c-look">Look around first</button>
+            <button class="pill" data-target="c-price">Price felt steep</button>
+            <button class="pill" data-target="c-use">Not sure I’ll use it</button>
+            <button class="pill" data-target="c-else">Something else</button>
+          </div>
+
+          <div class="response" data-response="c-look"><div class="response-inner">
+            <div class="card">
+              <span class="lead">Browse first — honestly, please do.</span> The public library is open to anyone. Have a look around, no commitment.
+              <div><button class="ghost-btn">Browse the library
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+            </div>
+          </div></div>
+          <div class="response" data-response="c-price"><div class="response-inner">
+            <div class="card">
+              <span class="lead">About one paperback a month.</span> Books go both ways all year, and the first 14 days are free.
+            </div>
+          </div></div>
+          <div class="response" data-response="c-use"><div class="response-inner">
+            <div class="card">
+              <span class="lead">No minimums.</span> Ship a book whenever one finds its reader — your pace, always.
+            </div>
+          </div></div>
+          <div class="response" data-response="c-else"><div class="response-inner">
+            <div class="card feedback">
+              <span class="lead">What’s on your mind?</span> A line or two helps a lot.
+              <div class="feedback-form">
+                <textarea placeholder="Tell us…"></textarea>
+                <div class="feedback-row"><button class="send-btn" type="button">Send note</button></div>
+              </div>
+              <p class="thanks">Thank you — noted with care.</p>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="actions">
+          <button class="cta-primary">
+            Try checkout again
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <button class="cta-secondary">Maybe later</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  // Wire up every modal independently. One option open at a time per modal.
+  document.querySelectorAll('.modal').forEach(function (modal) {
+    var triggers = modal.querySelectorAll('[data-target]');
+
+    function openResponse(target, trigger) {
+      // toggle active state on triggers
+      modal.querySelectorAll('[data-target]').forEach(function (t) { t.classList.remove('is-active'); });
+      // close all responses
+      modal.querySelectorAll('.response').forEach(function (r) { r.classList.remove('is-open'); });
+
+      var isSame = trigger.getAttribute('data-was-open') === 'true';
+      // allow clicking an active option to collapse it
+      modal.querySelectorAll('[data-target]').forEach(function (t) { t.setAttribute('data-was-open', 'false'); });
+
+      if (!isSame) {
+        trigger.classList.add('is-active');
+        trigger.setAttribute('data-was-open', 'true');
+        var resp = modal.querySelector('.response[data-response="' + target + '"]');
+        if (resp) resp.classList.add('is-open');
+      }
+    }
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        openResponse(trigger.getAttribute('data-target'), trigger);
+      });
+    });
+
+    // feedback "Send note" -> thank-you
+    modal.querySelectorAll('.send-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('.card');
+        var form = card.querySelector('.feedback-form');
+        var thanks = card.querySelector('.thanks');
+        // (in Bubble this is where you'd save the text to the database)
+        if (form) form.style.display = 'none';
+        if (thanks) thanks.classList.add('show');
+      });
+    });
+  });
+
+  // mark the pre-expanded option in Variation B as "was open" so a click collapses it
+  document.querySelectorAll('.option.is-active').forEach(function (o) { o.setAttribute('data-was-open', 'true'); });
+</script>
+</body>
+</html>
